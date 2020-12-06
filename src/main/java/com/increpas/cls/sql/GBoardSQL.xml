@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 문서를 구분해주는 id값 -->
+<mapper namespace="gSQL">
+	<select id="getList" resultType="gVO" parameterType="gVO">
+			SELECT
+			*
+			FROM
+			(
+				SELECT
+					ROWNUM rno, gg.*
+				FROM
+				(
+					SELECT
+						gno, id, body, wdate wtime, afile avatar, cnt
+					FROM
+						guestboard, member, avatar,
+						(
+							SELECT
+								COUNT(*) cnt
+							FROM
+								guestboard g, member m
+							WHERE
+								g_mno = mno
+						<if test="id neq null">
+							AND m.id = #{id}
+						</if>
+						)
+					WHERE
+						g_mno = mno
+						AND avt = ano
+						AND guestboard.isshow = 'Y'
+						AND member.isshow = 'Y'		
+					ORDER BY
+						wdate DESC
+				) gg
+			)
+		WHERE
+			rno BETWEEN #{page.startCont} AND #{page.endCont}
+	</select>
+	
+	<select id="getTotal" resultType="int">
+		SELECT
+			conunt(*)
+		FROM
+			guestboard
+		WHERE
+			isshow = 'Y'
+	</select>
+	
+	<select id="getAvatar" resultType="string" parameterType="string">
+		SELECT
+			afile
+		FROM
+			avatar, member
+		WHERE
+			avt = ano
+			AND id = #{id}
+	</select>
+</mapper>  

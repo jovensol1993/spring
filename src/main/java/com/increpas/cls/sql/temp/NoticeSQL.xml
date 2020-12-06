@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="nSQL">
+		<resultMap type="nVO" id="temp">
+			<result property="contents" column="contents" jdbcType="LONGVARCHAR" 
+			javaType="java.lang.String" typeHandler="com.increpas.cls.util.typeHandlers.LongTypeHandler"/>
+		</resultMap>
+
+	<select id="getList" resultType="nVO">
+      SELECT 
+         nno, title, contents, ndate, ndate ntime, hits
+      FROM
+         notice
+      WHERE
+         isshow = 'Y'
+      ORDER BY
+         nno DESC
+   </select>
+	
+	<update id="updateContents" parameterType="nVO">
+		UPDATE
+			notice
+		SET
+			contents = #{contents}
+		WHERE
+			nno = #{nno}
+	</update>
+	
+	<select id="getDetail" parameterType="nVO" resultType="nVO">
+      SELECT 
+         nno, contents
+      FROM
+         notice
+      WHERE
+         isshow = 'Y'
+      	 and nno = #{nno}	
+	</select>
+	
+	<update id="updateDel" parameterType="nVO">
+		UPDATE
+			notice
+		SET
+			isshow = 'N'
+		WHERE
+			nno = #{nno}	
+	</update>
+	
+	<update id="updateHit" parameterType="nVO">
+		UPDATE
+			notice
+		SET
+			hits = hits + 1
+		WHERE
+			nno = #{nno}
+	</update>
+</mapper>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mSQL">
+
+	<select id="idCount" resultType="int" parameterType="string">
+		SELECT
+			COUNT(*) cnt
+		FROM
+			member
+		WHERE
+			id = #{id}
+	</select>
+	
+	<select id="login" resultType="int" parameterType="mVO">
+<!-- 	<select id="login" resultType="int" parameterType="com.increpas.cls.vo.MemberVO"> mybatis에 선언 안하면 경로 다써줘야함-->
+		SELECT
+			count(*) cnt
+		FROM
+			member
+		WHERE
+			isshow = 'Y'
+			AND id = #{id}
+			AND pw = #{pw}
+	</select>
+	
+	<select id="getInfo" resultType="mVO" parameterType="string">
+		SELECT
+			mno, name, id, mail, m.gen, avt, joinDate, joinDate joinTime, afile avatar
+		FROM
+			member m, avatar a
+		WHERE
+			avt = ano
+			AND isshow = 'Y'
+			AND id = #{id}
+	</select>
+		
+	<select id="getInfoNo" resultType="mVO" parameterType="int">
+		SELECT
+			mno, name, id, mail, m.gen, avt, joinDate, joinDate joinTime, afile avatar
+		FROM
+			member m, avatar a
+		WHERE
+			avt = ano
+			AND isshow = 'Y'
+			AND mno = #{no}
+	</select>
+		
+	<update id="del_memb" parameterType="mVO">
+		UPDATE
+			member
+		SET
+			isshow = 'N'
+		WHERE
+			mno = #{mno}
+			AND pw = #{pw}
+	</update>
+		
+	<select id="nameList" resultType="mVO">
+			SELECT
+				mno, name
+			FROM
+				member
+			WHERE
+				isshow = 'Y'
+	</select>
+	
+	<insert id="addMember" parameterType="mVO">
+		<selectKey keyProperty="mno" resultType="int" order="BEFORE">
+			SELECT
+				NVL(MAX(mno) + 1, 1001)
+			FROM
+				member
+		</selectKey>
+		INSERT INTO
+			member(mno, id, pw, name, mail, gen, avt)
+		VALUES(
+			#{mno}, #{id}, #{pw}, #{name}, #{mail}, #{gen}, #{avt}
+		)
+	</insert>
+	<update id="editMember" parameterType="mVO">
+		UPDATE
+			member
+		<!--
+			형식 ] 
+			<trim prefix='-"SET" suffixOverrides=",">내용</trim> 
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="mail neq null">mail = #{mail},</if>
+			<if test="avt neq 0">avt = #{avt},</if>
+		</trim>
+		
+			참고 ]
+				마이바티스 비교 연산자
+				
+					== , eq
+					!= , neq
+		-->
+		<set>
+			<if test="mail neq null">mail = #{mail},</if>
+			<if test="avt neq 0">avt = #{avt},</if>
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
+</mapper>
