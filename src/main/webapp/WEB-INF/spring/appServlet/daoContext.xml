@@ -11,6 +11,8 @@
 	
 	<bean id="mDao" class="com.increpas.cls.dao.MemberDao"/>
 	<bean id="gDao" class="com.increpas.cls.dao.GBoardDao"/>
+	<bean id="sDao" class="com.increpas.cls.dao.SurveyDao"/>
+	<bean id="rDao" class="com.increpas.cls.dao.ReBoardDao"/>
 	
 	<bean id="nDao" class="com.increpas.cls.dao.temp.NoticeDao"/>
 	

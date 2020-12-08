@@ -1,9 +1,11 @@
 package com.increpas.cls.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.increpas.cls.vo.AvatarVO;
 import com.increpas.cls.vo.MemberVO;
@@ -50,13 +52,22 @@ public class MemberDao {
 		return sqlSession.selectOne("mSQL.idCount", id);
 	}
 	
-	// 회원 정보 수정 전담 처리함수
-	public int editMember(MemberVO mVO) {
-		return sqlSession.update("mSQL.editMember",mVO);
-	}
-	
 	// 회원가입 처리 전담 처리 함수
 	public int insertMember(MemberVO mVO) {
 		return sqlSession.insert("mSQL.addMember", mVO);
+	}
+	
+	// 여러 회원가입 처리 전담 처리 함수
+	@Transactional
+	public int insertMember(ArrayList<MemberVO> list) {
+		int cnt = 0;
+		for(MemberVO mVO : list) {
+			cnt += insertMember(mVO);
+		}
+		return cnt;
+	}
+	// 회원 정보 수정 전담 처리함수
+	public int editMember(MemberVO mVO) {
+		return sqlSession.update("mSQL.editMember",mVO);
 	}
 }

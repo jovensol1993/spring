@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+<web-app 
+	version="3.1" 
+	xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_3_1.xsd">
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+					https://java.sun.com/xml/ns/javaee/web-app_3_1.xsd">
 
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
-	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<!-- jsp: context.xml 과 같은파일을 읽어오라는 태그 -->
@@ -26,8 +28,8 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	<!-- web.xml 기능은 appServlet의 cls-context.xml을  -->
-	<!-- clsServlet Mapping -->
+<!-- 
+ -->
 	<servlet>
 		<servlet-name>clsServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -38,17 +40,19 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 	
-<!-- <servlet-mapping> -->
+	<!-- Servelt Mapping -->
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+<!-- 
+ -->	
 	<servlet-mapping>
 		<servlet-name>clsServlet</servlet-name>
 		<url-pattern>*.cls</url-pattern>
 	</servlet-mapping>
-
-<!-- POST 방식으로 넘어오는 한글 데이터 깨짐을 방지하기 위한 필터링 처리 -->
+	
+	<!-- POST 방식으로 넘어오는 한글 데이터 깨짐을 방지하기 위한 필터링 처리 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>
@@ -68,4 +72,5 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
 </web-app>

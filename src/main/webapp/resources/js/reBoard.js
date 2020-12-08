@@ -110,6 +110,7 @@ $(document).ready(function(){
 //		$(location).attr('href' , '/cls/reBoard/reBoardEditView.cls');
 		$('#frm').attr('method', 'POST');
 		$('#frm').attr('action', '/cls/reBoard/reBoardEditView.cls');
+
 		$('#frm').submit();
 	});
 	
@@ -120,7 +121,6 @@ $(document).ready(function(){
 	$('#wrbtn').click(function(){
 		// 수정인지 등록인지 구분
 		var str = $(this).text();
-		
 		var txt = $('#body').val();
 		var url = '/cls/reBoard/reBoardWriteProc.cls';
 		
@@ -132,10 +132,12 @@ $(document).ready(function(){
 		} else {
 			url = '/cls/reBoard/reBoardEditProc.cls';
 		}
-		
-		$('#frm').attr('method', 'POST');
 		$('#frm').attr('action', url);
+		
+		alert($(frm.id).val() + ' | ' + $('#body').val() + ' | ' + $(frm.avatar).val() + ' | ' + $(frm.bno).val() + ' | ' + $(frm.nowPage).val());
+		
 		$('#frm').submit();
+		
 	});
 	
 	$('.rebtn').click(function(){

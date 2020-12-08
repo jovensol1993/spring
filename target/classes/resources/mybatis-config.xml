@@ -29,6 +29,8 @@
 		<typeAlias alias="mVO" type="com.increpas.cls.vo.MemberVO"/>
 		<typeAlias alias="aVO" type="com.increpas.cls.vo.AvatarVO"/>
 		<typeAlias alias="gVO" type="com.increpas.cls.vo.GBoardVO"/>
+		<typeAlias alias="sVO" type="com.increpas.cls.vo.SurveyVO"/>
+		<typeAlias alias="rVO" type="com.increpas.cls.vo.ReBoardVO"/>
 		
 		<typeAlias alias="nVO" type="com.increpas.cls.vo.temp.NoticeVO"/>
 		
@@ -88,9 +90,12 @@
 				따라서
 				질의명령에 채워주는 데이터는 dao에서 채워주는 변수이름으로 작성해야 한다.
 		-->
+		
 		<mapper resource="com/increpas/cls/sql/MemberSQL.xml"></mapper>
 		<mapper resource="com/increpas/cls/sql/AvatarSQL.xml"></mapper>
 		<mapper resource="com/increpas/cls/sql/GBoardSQL.xml"></mapper>
+		<mapper resource="com/increpas/cls/sql/SurveySQL.xml"></mapper>
+		<mapper resource="com/increpas/cls/sql/ReBoardSQL.xml"></mapper>
 
 
 		<mapper resource="com/increpas/cls/sql/temp/NoticeSQL.xml"></mapper>

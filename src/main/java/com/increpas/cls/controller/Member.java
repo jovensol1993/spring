@@ -124,12 +124,25 @@ public class Member {
 		String result = "OK";
 //		System.out.println(mVO.getId());
 		// VO 가 완성됬으니 데이터 베이스 작업(DAO) 하고
+		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
+		list.add(mVO);
+//		list.add(new MemberVO());
+		int cnt = 0;
+		try {
+			cnt = mDao.insertMember(list);
+		} catch(Exception e) {
+			e.printStackTrace();
+			cnt = 0;
+		}
+		
+		/*
 		int cnt = mDao.insertMember(mVO);
+		 */
 		if(cnt == 1) {
 			session.setAttribute("SID", mVO.getId());
 		} else {
 			result = "NO";
-			
+		
 		}
 		/*
 		MultipartRequest multi;

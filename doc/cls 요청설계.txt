@@ -118,16 +118,16 @@
 # 댓글게시판 더미데이터 삽입 요청
 요청내용 : /cls/reBoard/initRBD.cls
 파라미터 : (id,) body
-컨트롤러 : com.increpas.cls.controller.reBoard.AddRBD
+컨트롤러 : com.increpas.cls.controller.reBoard.addRBD
 뷰	  : redirect ] /cls/reBoard/reBoard.cls
 ------------------------------------------------------------
-# 댓글게시판 게시글보기 요청
+* 댓글게시판 게시글보기 요청
 요청내용 : /cls/reBoard/reBoardList.cls
 파라미터 : nowPage
-컨트롤러 : com.increpas.cls.controller.reBoard.ReBoardList
-뷰	  : /WEB-INF/views/com/increpas/cls/reBoard/ReBoard.jsp
+컨트롤러 : com.increpas.cls.controller.reBoard.reBoardList
+뷰	  : /WEB-INF/views/com/increpas/cls/reBoard/reBoard.jsp
 ------------------------------------------------------------
-# 댓글게시판 원글쓰기 요청
+* 댓글게시판 원글쓰기 요청
 요청내용 : /cls/reBoard/reBoardWriteProc.cls
 파라미터 : id, body
 컨트롤러 : com.increpas.cls.controller.reBoard.ReBoardWriteProc
@@ -171,24 +171,24 @@
 # 설문조사 주제 폼 요청
 요청내용 : /cls/survey/surveyInfo.cls
 파라미터 : 무
-컨트롤러 : com.increpas.cls.controller.survey.SurveyInfo
-뷰	  : /WEB-INF/views/com/increpas/cls/survey/SurveyInfo.jsp
+컨트롤러 : com.increpas.cls.controller.Survey.surveyInfo
+뷰	  : /WEB-INF/views/com/increpas/cls/survey/surveyInfo.jsp
 -----------------------------------------------------------------------------
 # 설문조사 참여 폼 요청
 요청내용 : /cls/survey/survey.cls
 파라미터 : sno(설문번호)
-컨트롤러 : com.increpas.cls.controller.survey.Survey
-뷰	  : /WEB-INF/views/com/increpas/cls/survey/Survey.jsp
+컨트롤러 : com.increpas.cls.controller.Survey.survey
+뷰	  : /WEB-INF/views/com/increpas/cls/survey/survey.jsp
 -----------------------------------------------------------------------------
 # 설문조사 처리 요청
 요청내용 : /cls/survey/surveyProc.cls
 파라미터 : qno
-컨트롤러 : com.increpas.cls.controller.survey.Survey
+컨트롤러 : com.increpas.cls.controller.Survey.surveyProc
 뷰	  : redirect ] /cls/survey/surveyResult.cls
 -----------------------------------------------------------------------------
 # 설문조사 결과 폼 요청
 요청내용 : /cls/survey/surveyResult.cls
 파라미터 : sno
-컨트롤러 : com.increpas.cls.controller.survey.SurveyResult
-뷰	  : /WEB-INF/views/com/increpas/cls/survey/SurveyResult.jsp
+컨트롤러 : com.increpas.cls.controller.Survey.surveyResult
+뷰	  : /WEB-INF/views/com/increpas/cls/survey/surveyResult.jsp
 -----------------------------------------------------------------------------
