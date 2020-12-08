@@ -4,7 +4,37 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="rSQL">
 <!-- 	*** sql에 물음표 있으면 parameterType 채워놓는 것 -->
-	<select id="getReBoardList" resultType="rVO" parameterType="rVO">
+<!-- 	<select id="getReBoardList" resultType="rVO" parameterType="rVO">
+ SELECT 
+  	* 
+ FROM 
+ 	(SELECT  
+ 	rownum rno, r.* 
+ 	FROM 
+ 		(SELECT 
+ 			temp.*, (level -1 ) step 
+ 		FROM (
+	 		SELECT
+	 			bno, b_mno mno, id, ano, afile avatar, body, wdate, wdate wtime, upno
+	 		FROM 
+	 			reboard re, member m, avatar a 
+	 		WHERE 
+	 			re.isshow= 'Y' 
+	 			AND b_mno = mno 
+	 			AND avt = ano 
+	 		ORDER BY
+	 			wdate DESC
+	 		) temp
+		START WITH  
+	 		temp.upno IS NULL 
+	 	CONNECT BY  
+	 		PRIOR temp.bno = temp.upno 
+	 	ORDER SIBLINGS BY    
+	 		temp.wdate ASC) r) 
+ WHERE 
+ 	rno BETWEEN #{page.startCont} AND #{page.endCont}
+	</select> -->
+ 	<select id="getReBoardList" resultType="rVO" parameterType="rVO">
  SELECT 
   	* 
  FROM 

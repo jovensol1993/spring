@@ -10,23 +10,25 @@
 <link rel="stylesheet" type="text/css" href="/cls/css/cls.css">
 <script type="text/javascript" src="/cls/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
+ 	$(document).ready(function(){
 		$('#frm').submit();
 	});
-	
+ 
 </script>
 
 </head>
 <body>
-	<form method="POST" action="/cls/reBoard/reBoardList.cls" id="frm">
+	 
+ 	<form method="POST" action="/cls${URI}" id="frm">
 		<input type="hidden" name="nowPage" value="${param.nowPage}">
-		<input type="hidden" name="avatar" value="${param.avatar}">
 	</form>
 	 
-	<!-- 
-	 <c:redirect url="/cls/reBoard/reBoardList.cls">
+	<div>${param.nowPage}</div>
+	<div class="w3-col w3-red" style="height:200px;"></div>
+ <!-- 	 
+	 <c:redirect url="/reBoard/reBoardList.cls">
 	 	<c:param name="nowPage" value="${param.nowPage}" />
 	 </c:redirect>
-	 -->
+ -->
 </body>
 </html>

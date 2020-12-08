@@ -132,6 +132,7 @@ $(document).ready(function(){
 		} else {
 			url = '/cls/reBoard/reBoardEditProc.cls';
 		}
+		$('#frm').attr('method', 'post');
 		$('#frm').attr('action', url);
 		
 		alert($(frm.id).val() + ' | ' + $('#body').val() + ' | ' + $(frm.avatar).val() + ' | ' + $(frm.bno).val() + ' | ' + $(frm.nowPage).val());

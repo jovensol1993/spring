@@ -10,10 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.increpas.cls.dao.ReBoardDao;
 import com.increpas.cls.util.PageUtil;
-import com.increpas.cls.util.W3Color;
 import com.increpas.cls.vo.ReBoardVO;
 
 @Controller
@@ -62,8 +62,8 @@ public class ReBoard {
 	}
 	
 	// 댓글게시판 글쓰기 컨트롤러
-	@RequestMapping("/reBoardWriteProc.cls")
-	public ModelAndView reBoardWriteProc(ModelAndView mv, ReBoardVO rVO, PageUtil page) {
+	@RequestMapping(value="/reBoardWriteProc.cls", method=RequestMethod.POST)
+	public ModelAndView reBoardWriteProc(ModelAndView mv, RedirectView rd, ReBoardVO rVO, PageUtil page) {
 		int cnt = 0;
 		System.out.println("******** cnt : " + cnt);
 		cnt = rDao.addBoard(rVO);
@@ -71,7 +71,8 @@ public class ReBoard {
 		// 데이터 심고
 //		mv.addObject("rVO", rVO);
 		// 뷰 호출하고
-		mv.setViewName("redirect:/reBoard/reBoardList.cls");
+		rd.setUrl("/cls/reBoard/reBoardList.cls");
+		mv.setView(rd);
 		return mv;
 	}
 	
@@ -99,6 +100,7 @@ public class ReBoard {
 		
 		int cnt = rDao.editReBoard(rVO);
 		System.out.println("********  " + cnt);
+		mv.addObject("URI", "/reBoard/reBoardList.cls");
 		mv.setViewName("reBoard/redirectView");
 		return mv;
 	}

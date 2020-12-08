@@ -30,7 +30,7 @@
 					<form method="POST" action="#" class="w3-rest" id="frm" name="frm">
 						<input type="hidden" name="id" value="${SID}">
 						<input type="hidden" name="avatar" value="${AVTIMG}">
-						<input type="hidden" name="bno" id="tno">
+						<!-- <input type="hidden" name="bno" id="tno"> -->
 						<input type="hidden" name="nowPage" value="${PAGE.nowPage}">
 						<textarea class="w3-input w3-border h72" style="resize: none;" placeholder="메세지를 작성하세요!" id="body" name="body"></textarea>
 						<div class="w3-col pdh1 mt5">
